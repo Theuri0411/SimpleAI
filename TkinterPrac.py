@@ -1,11 +1,9 @@
 from tkinter import *
 
 root = Tk()
-#Creating a label widget
-myLabel = Label(root, text="Hello world!")
+root.title(input("ENTER TITTLE: "))
+myLabel = Label(root, text=input("ENTER MESSAGE: "), font=("serif", 16), background="black", foreground="white")
 
-#Bringing to the screen
-myLabel.pack()
-
+myLabel.pack(anchor="w")
 
 root.mainloop()
