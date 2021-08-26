@@ -40,8 +40,8 @@ def run_jarvis():
     elif "time" in command:
         time = datetime.datetime.now().strftime("%I:%M %p")
         talk("The time now is" + time)
-    elif "wikipedia, what, who, why" in command:
-        person = command.replace("wikipedia, what, who, why", "")
+    elif "wikipedia" "what" "who" "why" in command:
+        person = command.replace("wikipedia" "what" "who" "why", "")
         info = wikipedia.summary(person, 4)
         print(info)
         talk(info)
