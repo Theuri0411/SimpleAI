@@ -1,9 +1,11 @@
 import datetime
-import speech_recognition as sr
+import speech_recognition as sp
 import pyttsx3
 import pywhatkit
+import wikipedia
+import pyjokes
 
-listener = sr.Recognizer()
+listener = sp.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[1].id)
@@ -16,7 +18,7 @@ def talk(text):
 
 def take_command():
     try:
-        with sr.Microphone() as source:
+        with sp.Microphone() as source:
             print("listening..")
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
@@ -38,6 +40,20 @@ def run_jarvis():
     elif "time" in command:
         time = datetime.datetime.now().strftime("%I:%M %p")
         talk("The time now is" + time)
+    elif "wikipedia, what, who, why" in command:
+        person = command.replace("wikipedia, what, who, why", "")
+        info = wikipedia.summary(person, 4)
+        print(info)
+        talk(info)
+    elif "game" in command:
+        talk("Sorry I am an AI")
+    elif "friends" in command:
+        talk("Sorry Sir!")
+    elif "joke" in command:
+        talk(pyjokes.get_joke())
+    else:
+        talk("Please repeat as you were not clear")
 
 
-run_jarvis()
+while True:
+    run_jarvis()
